@@ -1,30 +1,28 @@
-<script>
-// JavaScript to initialize the copy buttons
-function initializeCopyButtons() {
-  const buttons = document.querySelectorAll("[data-copy-button]"); // Select buttons by attribute
-  buttons.forEach((button) => {
-    button.addEventListener("click", async function (event) {
-      event.preventDefault(); // Prevent default behavior
+function initializeCopyButton() {
+  const button = document.getElementById("data-copy-button");
+  if (!button) {
+    console.warn("❗ Copy button not found.");
+    return;
+  }
 
-      try {
-        const currentUrl = window.location.href; // Get current URL
-        await navigator.clipboard.writeText(currentUrl); // Copy URL to clipboard
+  console.log("✅ Copy button found");
 
-        // Show success notification
-        notifyUser("Copied to clipboard");
-      } catch (err) {
-        console.error("Failed to copy:", err);
-        notifyUser("Failed to copy. Try again!");
-      }
-    });
+  button.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    try {
+      const currentUrl = window.location.href;
+      await navigator.clipboard.writeText(currentUrl);
+      notifyUser("Copied to clipboard");
+    } catch (err) {
+      console.error("❌ Failed to copy:", err);
+      notifyUser("Failed to copy. Try again!");
+    }
   });
 }
 
-// Function to show the notification at the bottom of the viewport
 function notifyUser(message) {
   let notification = document.getElementById("notification");
-
-  // Create notification element if it doesn't exist
   if (!notification) {
     notification = document.createElement("div");
     notification.id = "notification";
@@ -40,22 +38,15 @@ function notifyUser(message) {
     notification.style.zIndex = "1000";
     notification.style.opacity = "0";
     notification.style.transition = "opacity 0.3s ease";
-    notification.style.pointerEvents = "none"; // Prevent interaction
+    notification.style.pointerEvents = "none";
     document.body.appendChild(notification);
   }
 
-  // Set the notification message
   notification.textContent = message;
-
-  // Show the notification with fade-in effect
   requestAnimationFrame(() => (notification.style.opacity = "1"));
-
-  // Fade out and remove notification after 3 seconds
   setTimeout(() => {
-    notification.style.opacity = "0";
+    notification.style.opacity = "0");
   }, 3000);
 }
 
-// Initialize all copy buttons on page load
-initializeCopyButtons();
-  </script>
+document.addEventListener("DOMContentLoaded", initializeCopyButton);
