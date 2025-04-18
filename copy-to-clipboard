@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[homade-socialshare-element="copy"]').forEach(function (el) {
     el.addEventListener('click', function () {
@@ -11,4 +10,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-</script>
