@@ -45,7 +45,7 @@ function notifyUser(message) {
   notification.textContent = message;
   requestAnimationFrame(() => (notification.style.opacity = "1"));
   setTimeout(() => {
-    notification.style.opacity = "0");
+    notification.style.opacity = "0";
   }, 3000);
 }
 
