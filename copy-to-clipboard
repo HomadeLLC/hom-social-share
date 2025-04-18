@@ -1,6 +1,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('[hom-socialshare-element="copy"]').forEach(function (el) {
+  document.querySelectorAll('[homade-socialshare-element="copy"]').forEach(function (el) {
     el.addEventListener('click', function () {
       navigator.clipboard.writeText(window.location.href)
         .then(() => alert('Link copied to clipboard!'))
